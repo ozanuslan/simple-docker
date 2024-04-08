@@ -47,7 +47,8 @@ func main() {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Chroot: chroot,
+		Chroot:     chroot,
+		Cloneflags: syscall.CLONE_NEWPID,
 	}
 	err = cmd.Run()
 	if err != nil {
