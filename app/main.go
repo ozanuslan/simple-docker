@@ -17,6 +17,6 @@ func main() {
 	err := cmd.Run()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "err: %v", err)
-		os.Exit(1)
+		os.Exit(cmd.ProcessState.ExitCode())
 	}
 }
