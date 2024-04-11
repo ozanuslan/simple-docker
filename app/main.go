@@ -29,6 +29,16 @@ func main() {
 		panic(err)
 	}
 	CopyDir(chroot, imagePath)
+	os.Symlink("/bin/busybox", path.Join(chroot, "bin", "sh"))
+	os.Symlink("/bin/busybox", path.Join(chroot, "bin", "ls"))
+	// cmd := exec.Command("ls", "-lash", path.Join(chroot, "bin"))
+	// cmd.Stdout = os.Stdout
+	// cmd.Stderr = os.Stderr
+	// err = cmd.Run()
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// os.Exit(1)
 
 	cmd := exec.Command(command, args...)
 	cmd.Stdout = os.Stdout
